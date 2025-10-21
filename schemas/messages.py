@@ -1,45 +1,40 @@
 """
 Inter-agent message schemas for EPPN
 
-Defines dataclasses for messages exchanged between agents.
+Defines Pydantic models for messages exchanged between agents.
 """
 
-from dataclasses import dataclass
+from pydantic import BaseModel, Field
 from typing import List, Dict, Any, Optional
 
 
-@dataclass
-class CrawlRequest:
+class CrawlRequest(BaseModel):
     urls: List[str]
     interpreter_address: Optional[str] = None
-    metadata: Dict[str, Any] = None
+    metadata: Optional[Dict[str, Any]] = Field(default_factory=dict)
 
 
-@dataclass
-class PDFReady:
+class PDFReady(BaseModel):
     url: str
     source: str
     metadata: Dict[str, Any]
 
 
-@dataclass
-class ParsedText:
+class ParsedText(BaseModel):
     doc_id: str
     sections: List[Dict[str, Any]]
     entities: List[Dict[str, Any]]
     metadata: Dict[str, Any]
 
 
-@dataclass
-class SummaryReady:
+class SummaryReady(BaseModel):
     doc_id: str
     summary: str
     key_points: List[str]
     metadata: Dict[str, Any]
 
 
-@dataclass
-class EthicsReport:
+class EthicsReport(BaseModel):
     doc_id: str
     report: Dict[str, Any]
     risks: List[str]

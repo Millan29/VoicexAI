@@ -88,6 +88,12 @@ Located in `cognitive_core/reasoning/pln_reasoner.py`:
 ### Testing
 Use `python tools/cli_crawl.py URL` for end-to-end pipeline testing. Monitor via dashboard at `localhost:8000` or check data files in `data/summaries.jsonl` and `data/ethics.jsonl`.
 
+### AgentVerse Integration
+- Set `AGENTVERSE_TOKEN` environment variable with access token
+- Test connectivity: `python tools/test_agentverse.py`
+- Token configured in `config/asi-config.yaml` via env reference
+- Integration manager reads from `os.environ["AGENTVERSE_TOKEN"]`
+
 ### Key Dependencies
 - `uagents` - Multi-agent framework
 - `transformers`, `openai` - LLM integration for summarization

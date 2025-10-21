@@ -15,6 +15,7 @@ from cognitive_core.reasoning.xai_explainer import XAIExplainer
 from cognitive_core.human_in_loop import HumanInTheLoop
 from cudos_integration import CudosIntegration
 from agentverse_integration import AgentVerseIntegration
+import os
 
 
 class EPPNIntegrationManager:
@@ -51,9 +52,14 @@ class EPPNIntegrationManager:
             private_key=config.get("cudos_private_key")
         )
         
+        # AgentVerse token should be provided via environment variable
+        agentverse_token = os.environ.get("AGENTVERSE_TOKEN") or config.get(
+            "agentverse_api_key"
+        )
+
         self.agentverse_integration = AgentVerseIntegration(
             agentverse_api_url=config.get("agentverse_api_url", "https://api.agentverse.ai"),
-            api_key=config.get("agentverse_api_key")
+            api_key=agentverse_token,
         )
         
         # Agent registry

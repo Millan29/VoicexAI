@@ -23,6 +23,16 @@ agents:
   orchestrator:
     path: agents/orchestrator/main.py
     role: Routes messages across the pipeline
+    name: "Aethel"
+    api_key: "sk_dfdb772ee76f4a519f2d81870831911bb99530554f754e36a29aad452bf729df"
+    type: "orchestrator_sentinel"
+  agent_registry:
+    path: agents/agent_registry/main.py
+    role: Registry and blockchain coordination
+    name: "Agent Registry"
+    agent_id: "agent1q28ryexcvl2hv55gatd4dur07tlzcweqxmyk6dahrn4va0sdqt2lk2zfywa"
+    endpoint: "https://agentverse.ai/agents/details/agent1q28ryexcvl2hv55gatd4dur07tlzcweqxmyk6dahrn4va0sdqt2lk2zfywa/profile"
+    type: "registry_blockchain"
   social_monitor:
     path: agents/social_monitor/main.py
     role: Polls RSS/social feeds and triggers crawls
@@ -31,6 +41,13 @@ registry:
   provider: asi-cloud
   project: EPPN
   environment: dev
+
+agentverse:
+  # AgentVerse integration token - prefer setting as environment variable
+  # Do NOT commit real tokens to source control. Set AGENTVERSE_TOKEN in the
+  # deployment environment or CI secrets and leave this as a placeholder.
+  token_env: AGENTVERSE_TOKEN
+  api_url: https://api.agentverse.ai
 
 messaging:
   schemas: schemas/messages.py
