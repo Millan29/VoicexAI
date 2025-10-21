@@ -17,6 +17,9 @@ agents:
   communicator:
     path: agents/communicator/main.py
     role: Interfaces with human ethics partner via dashboard
+    name: "Twilio"
+    api_key: "agent1qfcx8z8a5muprru7gvq0mkg9rn7x07my02z4z87u4ctfk02jc0ygwppw9fk"
+    type: "communications"
   orchestrator:
     path: agents/orchestrator/main.py
     role: Routes messages across the pipeline

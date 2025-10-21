@@ -18,8 +18,8 @@ os.makedirs(DATA_DIR, exist_ok=True)
 
 
 agent = Agent(
-    name="communicator",
-    seed="eppn-communicator",
+    name="Twilio",
+    seed="agent1qfcx8z8a5muprru7gvq0mkg9rn7x07my02z4z87u4ctfk02jc0ygwppw9fk",
 )
 
 
@@ -32,7 +32,8 @@ async def handle_summary(ctx: Context, msg: SummaryReady):
 
 @agent.on_message(model=EthicsReport)
 async def handle_ethics(ctx: Context, msg: EthicsReport):
-    ctx.logger.info(f"Ethics report for {msg.doc_id}: {json.dumps(msg.report.get('summary', {}))}")
+    summary = json.dumps(msg.report.get('summary', {}))
+    ctx.logger.info(f"Ethics report for {msg.doc_id}: {summary}")
     with open(ETHICS_FILE, "a", encoding="utf-8") as f:
         f.write(json.dumps({
             "doc_id": msg.doc_id,
@@ -45,5 +46,3 @@ async def handle_ethics(ctx: Context, msg: EthicsReport):
 
 if __name__ == "__main__":
     agent.run()
-
-
