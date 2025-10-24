@@ -1,0 +1,47 @@
+{
+    "name": "EPPN Development Environment",
+    "image": "mcr.microsoft.com/devcontainers/python:3.11-bullseye",
+    
+    "features": {
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "18"
+        }
+    },
+
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-python.pylint",
+                "ms-python.black-formatter",
+                "ms-toolsai.jupyter",
+                "redhat.vscode-yaml",
+                "ms-vscode.vscode-json"
+            ],
+            "settings": {
+                "python.defaultInterpreterPath": "/usr/local/bin/python",
+                "python.formatting.provider": "black",
+                "python.linting.enabled": true,
+                "python.linting.pylintEnabled": true
+            }
+        }
+    },
+
+    "containerEnv": {
+        "PYTHONPATH": "/workspaces/VoicexAI",
+        "BROWSER": "echo 'Open in host browser:'"
+    },
+
+    "postCreateCommand": "pip install -r requirements.txt && pip install -e .",
+
+    "forwardPorts": [8000, 5432, 6379, 8080],
+
+    "mounts": [
+        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+    ],
+
+    "remoteUser": "vscode",
+
+    "workspaceFolder": "/workspaces/VoicexAI"
+}
