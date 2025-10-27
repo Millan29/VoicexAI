@@ -161,6 +161,73 @@ asi deploy --config config/asi-config.yaml
 5. **Phase 5**: Advanced cognitive capabilities and autonomous learning
 
 ## Contributing
+Added by @colleenpridemore
+
+# EPPN - Ethical Policy Pipeline Network
+
+## Overview
+
+The Ethical Policy Pipeline Network (EPPN) is a hybrid multi-agent system that combines ASI:uAgents distributed intelligence with OpenCog-inspired cognitive reasoning for autonomous policy document analysis and ethical evaluation.
+
+## Architecture
+
+### Technology Stack
+
+```mermaid
+graph TD
+    subgraph Frontend
+        A1[Vite/React]
+        A2[FastAPI Dashboard]
+        A3[Dockerized UI]
+        A1 --> A2
+    end
+    subgraph Backend
+        B1[Python 3.9+]
+        B2[uAgents Multi-Agent System]
+        B3[FastAPI]
+        B4[Cognitive Core<br/>OpenCog AtomSpace/PLN]
+        B5[LLM Integration<br/>Transformers/OpenAI]
+        B6[PDF & OCR<br/>PyPDF2, pdf2image, DeepSeek]
+        B1 --> B2
+        B2 --> B3
+        B3 --> B4
+        B3 --> B5
+        B3 --> B6
+    end
+    subgraph Cloud & DevOps
+        C1[ASI:cloud]
+        C2[Vercel]
+        C3[Netlify]
+        C4[GitHub Actions]
+        C5[Docker]
+        C1 --> B2
+        C2 --> A1
+        C3 --> A1
+        C4 --> A1
+        C4 --> B1
+        C5 --> A3
+        C5 --> B1
+    end
+    subgraph Optional
+        D1[Cudos Blockchain]
+        D2[AgentVerse Registry]
+        D3[OpenCog Hyperon]
+        D1 -.-> B2
+        D2 -.-> B2
+        D3 -.-> B4
+    end
+```
+
+*The diagram above shows the main technologies powering both the multi-agent backend, cognitive core, and the frontend dashboard, as well as deployment and optional integrations.*
+
+### Multi-Agent System (uAgents)
+- **Librarian uAgent**: Fetches PDFs from public government portals
+- **Interpreter uAgent**: Extracts and structures content from PDFs
+- **Summarizer uAgent**: Summarizes structured data using LLMs
+- **Ethical Analyst uAgent**: Integrates with OpenCog AtomSpace for ethical reasoning
+- **Communicator uAgent**: Interfaces with human ethics partner via dashboard
+
+...
 
 This project follows ethical AI development principles and requires careful consideration of bias, fairness, and transparency in all implementations.
 
